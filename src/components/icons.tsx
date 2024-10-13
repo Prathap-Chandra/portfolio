@@ -14,6 +14,56 @@ export const Icons = {
       />
     </svg>
   ),
+  medium: (props: IconProps) => (
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      {...props}
+    >
+      <title>Medium</title>
+      <path
+        d="M2.057 6.263c.02-.18-.05-.36-.17-.485L.218 3.62V3.375h5.3l4.1 9.036 3.594-9.036h5.163v.244l-1.435 1.374a.403.403 0 0 0-.153.385v10.881a.403.403 0 0 0 .153.385l1.397 1.374v.244H12.57v-.244l1.445-1.415c.142-.142.142-.184.142-.385V8.473l-3.938 10.239h-.539L5.038 8.473v6.709c-.039.277.059.554.26.741l1.88 2.277v.244H.117v-.244l1.88-2.277a.873.873 0 0 0 .26-.741V6.263z"
+        fill="currentColor"
+      />
+    </svg>
+  ),  
+  instagram: (props: IconProps) => (
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      {...props}
+    >
+      <title>Instagram</title>
+      <linearGradient
+        id="instagram-gradient"
+        x1="2"
+        y1="2"
+        x2="22"
+        y2="22"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="0%" stopColor="#f58529" />
+        <stop offset="50%" stopColor="#dd2a7b" />
+        <stop offset="100%" stopColor="#8134af" />
+      </linearGradient>
+      <path
+        d="M16 2H8C4.69 2 2 4.69 2 8v8c0 3.31 2.69 6 6 6h8c3.31 0 6-2.69 6-6V8c0-3.31-2.69-6-6-6zm4 14c0 2.21-1.79 4-4 4H8c-2.21 0-4-1.79-4-4V8c0-2.21 1.79-4 4-4h8c2.21 0 4 1.79 4 4v8z"
+        // fill="url(#instagram-gradient)"
+        fill="currentColor"
+      />
+      <path
+        d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+        // fill="url(#instagram-gradient)"
+        fill="currentColor"
+      />
+      <circle cx="17.5" cy="6.5" r="1.5" 
+      // fill="url(#instagram-gradient)" 
+      fill="currentColor"
+      />
+    </svg>
+  ),  
   x: (props: IconProps) => (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
       <title>X</title>
