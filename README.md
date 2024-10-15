@@ -2,7 +2,7 @@
 <img alt="Portfolio" src="https://github.com/dillionverma/portfolio/assets/16860528/57ffca81-3f0a-4425-b31d-094f61725455" width="90%">
 </div>
 
-# Portfolio [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdillionverma%2Fportfolio)
+# Portfolio (https://prathapchandra.com/)
 
 Built with next.js, [shadcn/ui](https://ui.shadcn.com/), and [magic ui](https://magicui.design/), deployed on Vercel.
 
@@ -12,9 +12,9 @@ Built with next.js, [shadcn/ui](https://ui.shadcn.com/), and [magic ui](https://
 - Built using Next.js 14, React, Typescript, Shadcn/UI, TailwindCSS, Framer Motion, Magic UI
 - Includes a blog
 - Responsive for different devices
-- Optimized for Next.js and Vercel
+- Optimized for Next.js
 
-# Getting Started Locally
+<!-- # Getting Started Locally
 
 1. Clone this repository to your local machine:
 
@@ -40,8 +40,8 @@ Built with next.js, [shadcn/ui](https://ui.shadcn.com/), and [magic ui](https://
    pnpm dev
    ```
 
-5. Open the [Config file](./src/data/resume.tsx) and make changes
+5. Open the [Config file](./src/data/resume.tsx) and make changes -->
 
-# License
+<!-- # License
 
-Licensed under the [MIT license](https://github.com/dillionverma/portfolio/blob/main/LICENSE.md).
+Licensed under the [MIT license](https://github.com/dillionverma/portfolio/blob/main/LICENSE.md). -->

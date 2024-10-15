@@ -7,7 +7,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
-import Markdown from "react-markdown";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -44,9 +45,12 @@ export default function Page() {
           <h2 className="text-xl font-bold">About</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+          <ReactMarkdown 
+            className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert"
+            remarkPlugins={[remarkGfm]}
+          >
             {DATA.summary}
-          </Markdown>
+          </ReactMarkdown>
         </BlurFade>
       </section>
       <section id="work">
@@ -117,15 +121,13 @@ export default function Page() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  My Projects
+                  My Work
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Check out my latest work
+                Talks and Blogs: My Playground
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve worked on a variety of projects, from simple
-                  websites to complex web applications. Here are a few of my
-                  favorites.
+                  Whether it's a formal presentation or a casual blog post, I love breaking down the technical work I do and sharing it with others. Here are a few of them.
                 </p>
               </div>
             </div>
@@ -142,17 +144,19 @@ export default function Page() {
                   title={project.title}
                   description={project.description}
                   dates={project.dates}
+                  location={project.location}
                   tags={project.technologies}
                   image={project.image}
                   video={project.video}
                   links={project.links}
+                  canvaEmbed={project.canvaEmbed}
                 />
               </BlurFade>
             ))}
           </div>
         </div>
       </section>
-      <section id="hackathons">
+      {/* <section id="hackathons">
         <div className="space-y-12 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 13}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -194,7 +198,7 @@ export default function Page() {
             </ul>
           </BlurFade>
         </div>
-      </section>
+      </section> */}
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
@@ -213,8 +217,7 @@ export default function Page() {
                 >
                   with a direct question on twitter
                 </Link>{" "}
-                and I&apos;ll respond whenever I can. I will ignore all
-                soliciting.
+                and I&apos;ll respond whenever I can.
               </p>
             </div>
           </BlurFade>

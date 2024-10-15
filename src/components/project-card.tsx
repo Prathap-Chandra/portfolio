@@ -16,10 +16,12 @@ interface Props {
   href?: string;
   description: string;
   dates: string;
+  location: string;
   tags: readonly string[];
   link?: string;
   image?: string;
   video?: string;
+  canvaEmbed?: string;
   links?: readonly {
     icon: React.ReactNode;
     type: string;
@@ -33,10 +35,12 @@ export function ProjectCard({
   href,
   description,
   dates,
-  tags,
+  location,
+  tags, 
   link,
   image,
   video,
+  canvaEmbed,
   links,
   className,
 }: Props) {
@@ -69,10 +73,21 @@ export function ProjectCard({
             className="h-40 w-full overflow-hidden object-cover object-top"
           />
         )}
+        {canvaEmbed && (
+          <iframe
+            src={canvaEmbed}
+            width="100%"
+            height="200"
+            frameBorder="0"
+            allowFullScreen
+          />
+        )}
       </Link>
       <CardHeader className="px-2">
         <div className="space-y-1">
           <CardTitle className="mt-1 text-base">{title}</CardTitle>
+          {/* similar to above line time add a location and display only if location is not empty */}
+          {location && <div className="font-sans text-xs">{location}</div>}
           <time className="font-sans text-xs">{dates}</time>
           <div className="hidden font-sans text-xs underline print:visible">
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
