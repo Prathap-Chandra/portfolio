@@ -11,39 +11,41 @@ import Image from "next/image";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
-interface Props {
+interface ProjectLink {
   title: string;
-  href?: string;
+  href: string;
+  type?: string;
+  icon?: JSX.Element; // Use JSX.Element to match React’s element type
+}
+
+interface ProjectCardProps {
+  title: string;
   description: string;
-  dates: string;
-  location: string;
-  tags: readonly string[];
-  link?: string;
+  href: string;
+  tags?: string[];
+  dates?: string;
+  location?: string;
   image?: string;
   video?: string;
   canvaEmbed?: string;
-  links?: readonly {
-    icon: React.ReactNode;
-    type: string;
-    href: string;
-  }[];
-  className?: string;
+  // links?: { title: string; href: string }[];
+  // links?: { title: string; href: string; type?: string; icon?: JSX.Element }[];
+  links?: ProjectLink[];
+  type?: string;
 }
 
 export function ProjectCard({
   title,
-  href,
   description,
+  href,
+  tags,
   dates,
   location,
-  tags, 
-  link,
   image,
   video,
   canvaEmbed,
   links,
-  className,
-}: Props) {
+}: ProjectCardProps) {
   return (
     <Card
       className={
@@ -52,7 +54,7 @@ export function ProjectCard({
     >
       <Link
         href={href || "#"}
-        className={cn("block cursor-pointer", className)}
+        className={cn("block cursor-pointer")}
       >
         {video && (
           <video
@@ -90,7 +92,7 @@ export function ProjectCard({
           {location && <div className="font-sans text-xs">{location}</div>}
           <time className="font-sans text-xs">{dates}</time>
           <div className="hidden font-sans text-xs underline print:visible">
-            {link?.replace("https://", "").replace("www.", "").replace("/", "")}
+            {href?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
           <Markdown className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert">
             {description}
@@ -118,8 +120,7 @@ export function ProjectCard({
             {links?.map((link, idx) => (
               <Link href={link?.href} key={idx} target="_blank">
                 <Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]">
-                  {link.icon}
-                  {link.type}
+                  {link.title}
                 </Badge>
               </Link>
             ))}

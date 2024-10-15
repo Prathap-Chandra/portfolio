@@ -127,7 +127,7 @@ export default function Page() {
                 Talks and Blogs: My Playground
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Whether it's a formal presentation or a casual blog post, I love breaking down the technical work I do and sharing it with others. Here are a few of them.
+                  Whether it&apos;s a formal presentation or a casual blog post, I love breaking down the technical work I do and sharing it with others. Here are a few of them.
                 </p>
               </div>
             </div>
@@ -143,13 +143,19 @@ export default function Page() {
                   key={project.title}
                   title={project.title}
                   description={project.description}
-                  dates={project.dates}
-                  location={project.location}
-                  tags={project.technologies}
-                  image={project.image}
-                  video={project.video}
-                  links={project.links}
-                  canvaEmbed={project.canvaEmbed}
+                  dates={project?.dates ?? undefined}
+                  location={project?.location ?? undefined}
+                  tags={[...(project?.technologies ?? [])]}
+                  image={project?.image ?? undefined}
+                  video={project?.video ?? undefined}
+                  links={
+                    project?.links?.map((link) => ({
+                      title: link.type, // Map 'type' to 'title'
+                      href: link.href,
+                      icon: link.icon,
+                    })) ?? undefined
+                  }
+                  canvaEmbed={project?.canvaEmbed ?? undefined}
                 />
               </BlurFade>
             ))}

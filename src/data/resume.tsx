@@ -209,6 +209,8 @@ export const DATA = {
         "Large Language Models (LLMs)",
         "Qdrant",
       ],
+      image: "",
+      video: "",
       links: [
         {
           type: "Canva Presentation",
@@ -265,6 +267,8 @@ export const DATA = {
         "Query Optimization",
         "Auto-Vacuum"
       ],
+      image: "",
+      video: "",
       links: [
         {
           type: "Canva Presentation",
@@ -300,6 +304,8 @@ export const DATA = {
       dates: "23rd September 2023",
       location: "Freecharge (DBAT), Mumbai, India",
       active: true,
+      image: "",
+      video: "",
       description:
         "In this talk, I delve into building intelligent chatbots using entity extraction and intent recognition techniques. I explore tools like Duckling and spaCy to interpret user inputs, demonstrating how they extract meaningful information and recognize intent to deliver precise, context-aware responses.",
       technologies: [
@@ -329,8 +335,8 @@ export const DATA = {
     {
       title: "Load balancing using Nginx",
       href: "https://medium.com/codex/load-balancing-with-nginx-7d1bb4c24d5d?sk=408a77f628eef6a90939e7744fd5d5af",
-      // dates: "23rd September 2023",
-      // location: "Freecharge (DBAT), Mumbai, India",
+      dates: "",
+      location: "",
       active: true,
       description:
         "In this blog, I explore the power of NGINX as a load balancer at the application layer. I demonstrate how to configure multiple servers with NGINX to achieve efficient request distribution using methods like round-robin, least connections, and IP hash, while also touching on key features such as server slow-start and weighted balancing for optimized performance.",
@@ -346,6 +352,8 @@ export const DATA = {
         "Nginx Configuration"
       ],
       image: "/others/nginx-load-balancer.png",
+      video: "",
+      canvaEmbed: "",
       links: [
         {
           type: "Medium",
