@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   basePath: '/portfolio', // Add the path where your site is hosted
+  env: {
+    NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
+  },
 
   // Add the following headers to the Next.js config to allow Google Analytics to work and not load any external scripts
   async headers() {
