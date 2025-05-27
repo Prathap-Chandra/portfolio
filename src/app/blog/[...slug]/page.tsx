@@ -1,4 +1,4 @@
-import { getBlogPosts, getPost } from "@/data/blog";
+import { getBlogPosts, getPost, getAllBlogPostsTree } from "@/data/blog";
 import { DATA } from "@/data/resume";
 import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -6,8 +6,10 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 export async function generateStaticParams() {
-  const posts = await getBlogPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  const posts = await getAllBlogPostsTree();
+  return posts.map((post) => ({
+    slug: Array.isArray(post.path) ? post.path : [post.path],
+  }));
 }
 
 export async function generateMetadata({

@@ -132,3 +132,20 @@ function buildBlogTree(dir: string, baseDir: string = dir): BlogTreeNode[] {
 export function getBlogTree() {
   return buildBlogTree(path.join(process.cwd(), 'content'));
 }
+
+export async function getAllBlogPostsTree(): Promise<BlogTreeNode[]> {
+  // Recursively collect all posts (type === 'post') from the blog tree
+  function collectPosts(nodes: BlogTreeNode[]): BlogTreeNode[] {
+    let posts: BlogTreeNode[] = [];
+    for (const node of nodes) {
+      if (node.type === 'post') {
+        posts.push(node);
+      } else if (node.type === 'folder' && node.children) {
+        posts = posts.concat(collectPosts(node.children));
+      }
+    }
+    return posts;
+  }
+  const tree = getBlogTree();
+  return collectPosts(tree);
+}
