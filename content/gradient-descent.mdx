@@ -1,0 +1,166 @@
+---
+title: "Understanding Gradient Descent: A Visual and Mathematical Journey"
+publishedAt: "2024-06-18"
+summary: "A comprehensive guide to gradient descent with mathematical formulas and visualizations."
+---
+
+# Understanding Gradient Descent: A Visual and Mathematical Journey
+
+Gradient descent is one of the most fundamental optimization algorithms in machine learning and deep learning. In this post, we'll explore its mathematical foundations, visualize how it works, and implement it from scratch.
+
+## Mathematical Foundation
+
+The core idea of gradient descent is to minimize a function by iteratively moving in the direction of steepest descent. For a function $f(x)$, the gradient descent update rule is:
+
+$$x_{n+1} = x_n - \alpha \nabla f(x_n)$$
+
+where:
+
+- $x_n$ is the current position
+- $\alpha$ is the learning rate
+- $\nabla f(x_n)$ is the gradient of the function at point $x_n$
+
+For a function of multiple variables $f(x_1, x_2, ..., x_n)$, the gradient is:
+
+$$\nabla f = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix}$$
+
+## Visualizing Gradient Descent
+
+Let's implement and visualize gradient descent for a simple quadratic function:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+def gradient_descent_2d():
+    # Define the function: f(x) = x^2
+    def f(x):
+        return x**2
+
+    def gradient(x):
+        return 2*x
+
+    # Initialize parameters
+    x = 10.0  # Starting point
+    learning_rate = 0.1
+    iterations = 100
+
+    # Store the path
+    path = [x]
+
+    # Gradient descent
+    for _ in range(iterations):
+        x = x - learning_rate * gradient(x)
+        path.append(x)
+
+    # Plotting
+    x_vals = np.linspace(-11, 11, 100)
+    plt.figure(figsize=(10, 6))
+    plt.plot(x_vals, f(x_vals), 'b-', label='f(x) = x²')
+    plt.plot(path, [f(x) for x in path], 'ro-', label='Gradient Descent Path')
+    plt.xlabel('x')
+    plt.ylabel('f(x)')
+    plt.title('Gradient Descent on f(x) = x²')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+def gradient_descent_3d():
+    # Define the function: f(x,y) = x² + y²
+    def f(x, y):
+        return x**2 + y**2
+
+    def gradient(x, y):
+        return np.array([2*x, 2*y])
+
+    # Initialize parameters
+    x, y = 5.0, 5.0
+    learning_rate = 0.1
+    iterations = 100
+
+    # Store the path
+    path_x = [x]
+    path_y = [y]
+
+    # Gradient descent
+    for _ in range(iterations):
+        grad = gradient(x, y)
+        x = x - learning_rate * grad[0]
+        y = y - learning_rate * grad[1]
+        path_x.append(x)
+        path_y.append(y)
+
+    # Create 3D plot
+    fig = plt.figure(figsize=(10, 8))
+    ax = fig.add_subplot(111, projection='3d')
+
+    # Create mesh grid
+    x_vals = np.linspace(-6, 6, 100)
+    y_vals = np.linspace(-6, 6, 100)
+    X, Y = np.meshgrid(x_vals, y_vals)
+    Z = f(X, Y)
+
+    # Plot surface
+    ax.plot_surface(X, Y, Z, cmap='viridis', alpha=0.8)
+
+    # Plot path
+    path_z = [f(x, y) for x, y in zip(path_x, path_y)]
+    ax.plot(path_x, path_y, path_z, 'r-', linewidth=2)
+    ax.scatter(path_x, path_y, path_z, c='r', marker='o')
+
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.set_zlabel('f(x,y)')
+    ax.set_title('Gradient Descent on f(x,y) = x² + y²')
+    plt.show()
+
+# Run the visualizations
+gradient_descent_2d()
+gradient_descent_3d()
+```
+
+## Types of Gradient Descent
+
+There are three main variants of gradient descent:
+
+1. **Batch Gradient Descent**: Uses the entire dataset to compute the gradient
+   $$\theta_{t+1} = \theta_t - \alpha \nabla J(\theta_t)$$
+
+2. **Stochastic Gradient Descent (SGD)**: Uses a single random sample
+   $$\theta_{t+1} = \theta_t - \alpha \nabla J_i(\theta_t)$$
+
+3. **Mini-batch Gradient Descent**: Uses a subset of the data
+   $$\theta_{t+1} = \theta_t - \alpha \nabla J_B(\theta_t)$$
+
+## Challenges and Solutions
+
+### 1. Learning Rate Selection
+
+The learning rate $\alpha$ is crucial for convergence. If too large, the algorithm might diverge; if too small, convergence might be slow. A common solution is to use adaptive learning rates:
+
+$$\alpha_t = \frac{\alpha_0}{\sqrt{t}}$$
+
+### 2. Local Minima
+
+Gradient descent can get stuck in local minima. This is particularly problematic in non-convex optimization. Solutions include:
+
+- Random initialization
+- Momentum
+- Simulated annealing
+
+### 3. Saddle Points
+
+In high-dimensional spaces, saddle points are more common than local minima. The gradient at these points is zero, but they're not optimal. Solutions include:
+
+- Second-order methods
+- Momentum
+- Adaptive learning rates
+
+## Conclusion
+
+Gradient descent is a powerful optimization algorithm that forms the backbone of many machine learning algorithms. Understanding its mathematical foundations and visual intuition is crucial for developing effective machine learning models.
+
+The visualizations above demonstrate how gradient descent navigates the optimization landscape, moving towards the minimum of the function. The 2D plot shows the path on a simple quadratic function, while the 3D plot illustrates how the algorithm works in higher dimensions.
+
+Remember that the choice of learning rate, initialization, and the specific variant of gradient descent can significantly impact the performance of your optimization process.
