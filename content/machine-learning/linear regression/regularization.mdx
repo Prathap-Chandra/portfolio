@@ -1,0 +1,29 @@
+---
+title: "Regularization in Machine Learning"
+publishedAt: "2024-06-17"
+summary: "Understanding regularization techniques to prevent overfitting."
+---
+
+# Regularization in Machine Learning
+
+Regularization is a technique used to prevent overfitting in machine learning models by adding a penalty to the loss function.
+
+## Types of Regularization
+
+### L1 Regularization (Lasso)
+
+Adds the sum of the absolute values of the weights to the loss function:
+
+$$L = MSE + \lambda \sum_{j=1}^n |w_j|$$
+
+### L2 Regularization (Ridge)
+
+Adds the sum of the squared values of the weights to the loss function:
+
+$$L = MSE + \lambda \sum_{j=1}^n w_j^2$$
+
+## Why Use Regularization?
+
+- Reduces model complexity
+- Improves generalization
+- Helps with feature selection (L1)

@@ -1,0 +1,32 @@
+---
+title: "Stochastic Gradient Descent (SGD)"
+publishedAt: "2024-06-19"
+summary: "An introduction to Stochastic Gradient Descent, its intuition, and applications."
+---
+
+# Stochastic Gradient Descent (SGD)
+
+Stochastic Gradient Descent (SGD) is a popular optimization algorithm used in machine learning and deep learning. Unlike batch gradient descent, which uses the entire dataset to compute the gradient, SGD updates the model parameters using only a single data point (or a small batch) at each iteration.
+
+## Update Rule
+
+The update rule for SGD is:
+
+$$\theta_{t+1} = \theta_t - \alpha \nabla J_i(\theta_t)$$
+
+where $J_i$ is the loss for the $i$-th data point.
+
+## Advantages
+
+- Faster updates
+- Can escape local minima
+- Suitable for large datasets
+
+## Disadvantages
+
+- More noisy updates
+- May not converge to the exact minimum
+
+## Applications
+
+SGD is widely used in training neural networks and large-scale machine learning models.

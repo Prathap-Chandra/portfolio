@@ -1,5 +1,5 @@
 import BlurFade from "@/components/magicui/blur-fade";
-import { getBlogPosts } from "@/data/blog";
+import { getBlogTree, BlogTreeNode } from "@/data/blog";
 import Link from "next/link";
 
 export const metadata = {
@@ -9,38 +9,50 @@ export const metadata = {
 
 const BLUR_FADE_DELAY = 0.04;
 
+function renderBlogTree(nodes: BlogTreeNode[], level = 0) {
+  return (
+    <ul style={{ marginLeft: level * 20 }}>
+      {nodes.map((node) => {
+        if (node.type === "folder") {
+          return (
+            <li key={node.path.join("/")}>
+              <strong>{node.name}</strong>
+              {node.children && renderBlogTree(node.children, level + 1)}
+            </li>
+          );
+        } else {
+          return (
+            <li
+              key={node.path.join("/")}
+              style={{ marginTop: 4, marginBottom: 4 }}
+            >
+              <Link href={`/blog/${node.path.join("/")}`}>
+                {node.metadata?.title || node.name}
+                <span
+                  style={{ marginLeft: 8, color: "#888", fontSize: "0.8em" }}
+                >
+                  {node.metadata?.publishedAt
+                    ? `(${node.metadata.publishedAt})`
+                    : ""}
+                </span>
+              </Link>
+            </li>
+          );
+        }
+      })}
+    </ul>
+  );
+}
+
 export default async function BlogPage() {
-  const posts = await getBlogPosts();
+  const tree = await getBlogTree();
 
   return (
     <section>
       <BlurFade delay={BLUR_FADE_DELAY}>
         <h1 className="font-medium text-2xl mb-8 tracking-tighter">blog</h1>
       </BlurFade>
-      {posts
-        .sort((a, b) => {
-          if (
-            new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
-          ) {
-            return -1;
-          }
-          return 1;
-        })
-        .map((post, id) => (
-          <BlurFade delay={BLUR_FADE_DELAY * 2 + id * 0.05} key={post.slug}>
-            <Link
-              className="flex flex-col space-y-1 mb-4"
-              href={`/blog/${post.slug}`}
-            >
-              <div className="w-full flex flex-col">
-                <p className="tracking-tight">{post.metadata.title}</p>
-                <p className="h-6 text-xs text-muted-foreground">
-                  {post.metadata.publishedAt}
-                </p>
-              </div>
-            </Link>
-          </BlurFade>
-        ))}
+      {renderBlogTree(tree)}
     </section>
   );
 }
