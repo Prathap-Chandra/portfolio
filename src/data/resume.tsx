@@ -114,6 +114,7 @@ export const DATA = {
       description:
         " Implemented Outlook Actionable Mails and Actionable Mobile Pages (Gmail), integrating comprehensive help desk functionalities directly within users mailboxes resulting in a 3x increase in sales conversion. Developed an application enabling developers to select repositories, branches, and custom configurations for deployment, automating Docker container creation. Led the development of a robust integration system in Node.js from the ground up, serving as a critical intermediary between client applications and the main backend server. Optimized system performance by analyzing and refining database queries, significantly boosting read and write efficiency by 60%",
     },
+    /*
     {
       company: "Shipsy",
       href: "https://shipsy.io/",
@@ -126,6 +127,7 @@ export const DATA = {
       description:
         "Worked on logistics and supply chain management solutions for warehouses.",
     },
+    */
     {
       company: "2gethr",
       href: "https://www.2gethr.com/",
